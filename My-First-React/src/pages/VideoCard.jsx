@@ -1,6 +1,7 @@
 // VideoCard
 import { Heading, Divider, Card, Image, Stack, Text, CardBody, Grid, GridItem, CardFooter, Flex} from '@chakra-ui/react';
 import VideoVotes from './VideoVotes.jsx';
+import { useState } from 'react';
 
 
 
@@ -8,9 +9,15 @@ import VideoVotes from './VideoVotes.jsx';
 const cardsData = [
   // Add card data via API
   {
-    id: 1,
+    id: 0,
     imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80",
     hasVoted: false, 
+    likedVideoId: null,
+  },
+  {
+    id: 1,
+    imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80",
+    hasVoted: false,
     likedVideoId: null,
   },
   {
@@ -33,12 +40,6 @@ const cardsData = [
   },
   {
     id: 5,
-    imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80",
-    hasVoted: false,
-    likedVideoId: null,
-  },
-  {
-    id: 6,
     imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80",
     hasVoted: false,
     likedVideoId: null,
