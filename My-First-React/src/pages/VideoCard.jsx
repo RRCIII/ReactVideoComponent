@@ -4,8 +4,6 @@ import VideoVotes from './VideoVotes.jsx';
 import { useState } from 'react';
 
 
-
-
 const cardsData = [
   // Add card data via API
   {
@@ -50,6 +48,8 @@ const cardsData = [
 
 
 const VideoCard = () => {
+const [blurById, setBlurById] = useState(0);
+const [blurValue, setBlurValue] = useState(0);
  
   return (
     <Flex >
@@ -58,12 +58,17 @@ const VideoCard = () => {
         <GridItem key={card.id}>
           <Card maxW='sm' border="1px" borderColor="blackAlpha.200" >
             <CardBody>
-              <Image 
+              {blurById === <Image 
                 src={card.imageUrl}
                 alt='Green double couch with wooden legs'
                 borderRadius='lg'
-              /> 
-
+              /> }
+              {blurById !== <Image 
+                src={card.imageUrl}
+                alt='Green double couch with wooden legs'
+                borderRadius='lg'
+                fitler={`blur(${blurValue})px`}
+              /> }
               <Stack mt='6' spacing='3'>
                 <Heading size='md'>{card.title}</Heading>
                 <Text>{card.description}</Text>
@@ -75,7 +80,7 @@ const VideoCard = () => {
             <Divider />
             <CardFooter>
               {/* video component */}
-              <VideoVotes videoId={card.id} />
+              <VideoVotes videoId={card.id} setBlurById={setBlurById} setBlurValue={setBlurValue}/>
             </CardFooter>
           </Card>
         </GridItem>

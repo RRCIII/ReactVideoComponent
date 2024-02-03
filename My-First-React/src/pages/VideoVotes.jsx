@@ -2,32 +2,28 @@
 import { Box} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
+import VideoCard from "./VideoCard";
 
 
 
-
-const VideoVotes = ({ videoId }) => {
+const VideoVotes = ({ videoId, setBlurById, setBlurValue }) => {
   const [hasVoted, setHasVoted] = useState(false);
   const [likedVideoId, setLikedVideoId] = useState(null);
-  const [changeBlur, setChangeBlur] = useState(false);
-  console.log(changeBlur);
-  
  
-
+ 
   useEffect(() => {
     // Retrieve data from local storage when the component mounts
     const likedVideoIdStored = parseInt(localStorage.getItem("likedVideoId")); 
     if (likedVideoIdStored === videoId) {
       setHasVoted(true);
       setLikedVideoId(likedVideoIdStored);
-      setChangeBlur(false);
-    
+
     }
   }, [videoId]);
 
 
 
-
+// liked video
   const handleLikeClick = () => {
     console.log("liked");
     if (likedVideoId && likedVideoId !== videoId) {
@@ -51,7 +47,8 @@ const VideoVotes = ({ videoId }) => {
         localStorage.setItem("likedVideoId", videoId);
         setHasVoted(true);
         setLikedVideoId(videoId);
-        setChangeBlur(true);
+        setBlurById(videoId);
+        setBlurValue(0);
         alert("Vote confirmed!");
         
         } 
@@ -60,6 +57,7 @@ const VideoVotes = ({ videoId }) => {
     
   };
 
+  // unliked video
   const handleUnlikeClick = () => {
     console.log("Unlike");
   
@@ -73,7 +71,8 @@ const VideoVotes = ({ videoId }) => {
       localStorage.removeItem("likedVideoId");
       setHasVoted(false);
       setLikedVideoId(null);
-      setChangeBlur(false);
+      setBlurById(videoId);
+      setBlurValue(6);
       alert("Vote removed!");
     }
   };
